@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8">
+        <title>两个类互相引用</title>
+        <link rel="stylesheet" href="/theme/css/main.css">
+                
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">liuhatry's Blog </a></h1>
+                <nav><ul>
+                                                                                    <li class="active"><a href="/category/c.html">C++</a></li>
+                                    <li ><a href="/category/test.html">Test</a></li>
+                                                </ul></nav>
+        </header><!-- /#banner -->
+        <section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/.html" rel="bookmark"
+           title="Permalink to 两个类互相引用">两个类互相引用</a></h1>
+          </header>
+
+    <div class="entry-content">
+      <footer class="post-info">
+        <abbr class="published" title="2010-12-03T10:20:00">
+                Fri 03 December 2010
+        </abbr>
+
+                <address class="vcard author">
+                By <a class="url fn" href="/author/liuhatry.html">liuhatry</a>
+        </address>
+        <p>In <a href="/category/c.html">C++</a>. </p>
+<p>tags: <a href="/tag/c.html">C++</a></p>
+</footer><!-- /.post-info -->      <h2>问题引出</h2>
+<p>在构造自己的类时，有可能会碰到两个类之间的相互引用问题，例如：定义了类A类B，A中使用了B定义的类型，B中也使用了A定义的类型</p>
+<div class="highlight"><pre><span class="c1">//A.h</span>
+<span class="p">#</span><span class="k">include</span> <span class="s">&quot;B.h&quot;</span>
+<span class="k">class</span> <span class="no">A</span> <span class="p">{</span>
+  <span class="no">B</span> <span class="n">b</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="c1">//B.h</span>
+<span class="p">#</span><span class="k">include</span> <span class="s">&quot;A.h&quot;</span>
+<span class="k">class</span> <span class="no">B</span> <span class="p">{</span>
+  <span class="no">A</span> <span class="n">a</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+
+
+<p>在这种情况下，想想可以有a.b.a.b.a.b.a.b.a.b…………，很有点子子孙孙无穷尽之状，那么我的机器也无法承受。最主要的还是这种关系很难存在，也很难管理。这种定义方式类同程序中的死循环。</p>
+<h2>解决方法</h2>
+<h3>两者的定义，至少有一方是使用指针或引用，或者两者都使用指针或引用</h3>
+<div class="highlight"><pre><span class="c1">//class A.h</span>
+<span class="p">#</span><span class="k">include</span> <span class="s">&quot;B.h&quot;</span>
+<span class="k">class</span> <span class="no">A</span> <span class="p">{</span>
+  <span class="no">B</span> <span class="n">b</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">//class B.h</span>
+<span class="k">class</span> <span class="no">A</span><span class="p">;</span>
+<span class="k">class</span> <span class="no">B</span> <span class="p">{</span>
+  <span class="no">A</span> <span class="o">*</span><span class="n">a</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">//B.cpp</span>
+<span class="c1">//在B.cpp中的文件包含处要有下面语句，否则不能调用成员a的任何内容</span>
+<span class="p">#</span><span class="k">include</span> <span class="s">&quot;A.h&quot;</span>
+<span class="no">B</span><span class="o">::</span><span class="no">B</span><span class="p">()</span> <span class="p">{</span>
+
+<span class="p">}</span>
+</pre></div>
+
+
+<p><em>尽量多用引用或指针。 <br />
+</em>尽量多用前置声明，可以减小文件之间的相互耦合。</p>
+<h3>如果有这种问题，似乎该重新考虑下代码重构，是否存在设计问题，选择合适的设计模式</h3>
+    </div><!-- /.entry-content -->
+    
+  </article>
+</section>
+        <section id="extras" class="body">
+                        <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                                                    <li><a href="https://launchpad.net/~liuhatry">Liuhatry's launchpad</a></li>
+                                                    <li><a href="http://blog.sina.com.cn/u/2466248683">Liuhatry's sina blog</a></li>
+                                                    <li><a href="http://weibo.com/u/2466248683#1343958047973">Liuhatry's weibo</a></li>
+                                                </ul>
+                </div><!-- /.blogroll -->
+                                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="/None" type="application/atom+xml" rel="alternate">atom feed</a></li>
+                            
+                                                    <li><a href="http://bbs.byr.cn/#!default">byr forum</a></li>
+                                                </ul>
+                </div><!-- /.social -->
+                </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

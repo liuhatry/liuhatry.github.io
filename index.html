@@ -14,7 +14,8 @@
         <header id="banner" class="body">
                 <h1><a href="/">liuhatry's Blog </a></h1>
                 <nav><ul>
-                                                                                    <li ><a href="/category/test.html">Test</a></li>
+                                                                                    <li ><a href="/category/c.html">C++</a></li>
+                                    <li ><a href="/category/shell.html">shell</a></li>
                                                 </ul></nav>
         </header><!-- /#banner -->
                 
@@ -22,7 +23,7 @@
 
                             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="/my-super-post.html">Test FIle</a></h1> 
+                    <h1 class="entry-title"><a href="/C++异常.html">C++异常</a></h1> 
                     <footer class="post-info">
         <abbr class="published" title="2010-12-03T10:20:00">
                 Fri 03 December 2010
@@ -31,14 +32,45 @@
                 <address class="vcard author">
                 By <a class="url fn" href="/author/liuhatry.html">liuhatry</a>
         </address>
-        <p>In <a href="/category/test.html">Test</a>. </p>
-<p>tags: <a href="/tag/pelican.html">pelican</a><a href="/tag/publishing.html">publishing</a></p>
-</footer><!-- /.post-info --><h3>Install</h3>
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
-<h3>sdf<big></big></h3>
-<p>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages</p>                </article>
+        <p>In <a href="/category/c.html">C++</a>. </p>
+<p>tags: <a href="/tag/c.html">C++</a><a href="/tag/yi-chang.html">异常</a></p>
+</footer><!-- /.post-info --><h2>throw()</h2>
+<div class="highlight"><pre><span class="n">func</span><span class="p">()</span> <span class="n">throw</span><span class="p">()</span>
+</pre></div>
+
+
+<blockquote>
+<p>它是函数提供者和使用者的一种<strong>君子协定</strong>，标明该函数不抛出任何异常。
+之所以说是君子协定，是因为实际上内部实现是需要人肉确保。 
+所以，在使用该方法的时候，不必把它至于 try/catch 异常处理块中。</p>
+</blockquote>
+<p><strong>如果一个标明throw()的函数内部发生了throw：</strong>    </p>
+<p>如果内部直接throw something，编译器会发现并指出；  <br />
+如果是内部调用了一个可能throw something的函数，编译器无法发现，运行时一旦这个内部的函数throw，程序会abort。   </p>
+<div class="highlight"><pre><span class="n">func</span><span class="p">()</span> <span class="n">throw</span><span class="p">(</span><span class="n">type</span><span class="p">)</span>
+</pre></div>
+
+
+<p>会抛出某种异常   </p>
+<div class="highlight"><pre><span class="n">func</span><span class="p">()</span> <span class="n">throw</span><span class="p">(..)</span>
+</pre></div>
+
+
+<p>可能是任何类型的异常 </p>
+<div class="highlight"><pre><span class="n">func</span><span class="p">()</span>
+</pre></div>
+
+
+<p>可能抛出任何类型异常    </p>
+<h2>catch()</h2>
+<div class="highlight"><pre><span class="n">try</span><span class="p">{}</span>
+<span class="n">catch</span><span class="p">(</span><span class="n">except1</span><span class="o">&amp;</span><span class="p">){}</span>  <span class="c1">// 接受except1</span>
+<span class="n">catch</span><span class="p">(</span><span class="n">except2</span><span class="o">&amp;</span><span class="p">){}</span>  <span class="c1">// 接受except2</span>
+<span class="n">catch</span><span class="p">(...){}</span> <span class="c1">//接受所有异常</span>
+</pre></div>
+
+
+<p><strong>一般都写成引用（except1&amp;），原因很简单，效率。</strong></p>                </article>
                             </aside><!-- /#featured -->
                             <section id="content" class="body">
                     <h1>Other articles</h1>
@@ -49,8 +81,8 @@ $ git checkout gh-pages</p>                </article>
                  
                         <li><article class="hentry">    
                 <header>
-                    <h1><a href="/my-super-post1.html" rel="bookmark"
-                           title="Permalink to My super title">My super title</a></h1>
+                    <h1><a href="/Shell高级技巧.html" rel="bookmark"
+                           title="Permalink to Shell高级技巧">Shell高级技巧</a></h1>
                 </header>
                 
                 <div class="entry-content">
@@ -62,10 +94,34 @@ $ git checkout gh-pages</p>                </article>
                 <address class="vcard author">
                 By <a class="url fn" href="/author/liuhatry.html">liuhatry</a>
         </address>
-        <p>In <a href="/category/test.html">Test</a>. </p>
-<p>tags: <a href="/tag/pelican.html">pelican</a><a href="/tag/publishing.html">publishing</a></p>
-</footer><!-- /.post-info -->                <p>Short version for index and feeds</p>
-                <a class="readmore" href="/my-super-post1.html">read more</a>
+        <p>In <a href="/category/shell.html">shell</a>. </p>
+<p>tags: <a href="/tag/shell.html">shell</a><a href="/tag/jiao-ben.html">脚本</a></p>
+</footer><!-- /.post-info -->                
+                <a class="readmore" href="/Shell高级技巧.html">read more</a>
+                                </div><!-- /.entry-content -->
+            </article></li>
+                            
+
+                 
+                        <li><article class="hentry">    
+                <header>
+                    <h1><a href="/两个类互相引用.html" rel="bookmark"
+                           title="Permalink to 两个类互相引用">两个类互相引用</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2010-12-03T10:20:00">
+                Fri 03 December 2010
+        </abbr>
+
+                <address class="vcard author">
+                By <a class="url fn" href="/author/liuhatry.html">liuhatry</a>
+        </address>
+        <p>In <a href="/category/c.html">C++</a>. </p>
+<p>tags: <a href="/tag/c.html">C++</a></p>
+</footer><!-- /.post-info -->                
+                <a class="readmore" href="/两个类互相引用.html">read more</a>
                                 </div><!-- /.entry-content -->
             </article></li>
                             </ol><!-- /#posts-list -->
