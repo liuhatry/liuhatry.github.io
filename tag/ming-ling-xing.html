@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8">
+        <title>liuhatry's Blog - 命令行</title>
+        <link rel="stylesheet" href="/theme/css/main.css">
+                
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">liuhatry's Blog </a></h1>
+                <nav><ul>
+                                                                                    <li ><a href="/category/cxue-xi-bi-ji.html">C++学习笔记</a></li>
+                                    <li ><a href="/category/cyu-yan-xue-xi-bi-ji.html">C语言学习笔记</a></li>
+                                    <li ><a href="/category/linux.html">Linux</a></li>
+                                    <li ><a href="/category/stl.html">STL</a></li>
+                                    <li ><a href="/category/shell.html">Shell</a></li>
+                                                </ul></nav>
+        </header><!-- /#banner -->
+                
+            
+
+                            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="/./Shell/linux命令里的瑞士军刀.html">linux命令里的瑞士军刀</a></h1> 
+                    <footer class="post-info">
+        <abbr class="published" title="2013-05-03T08:20:00">
+                Fri 03 May 2013
+        </abbr>
+
+                <address class="vcard author">
+                By <a class="url fn" href="/author/liuhatry.html">liuhatry</a>
+        </address>
+        <p>In <a href="/category/shell.html">Shell</a>. </p>
+<p>tags: <a href="/tag/linux.html">Linux</a><a href="/tag/ming-ling-xing.html">命令行</a><a href="/tag/shell.html">shell</a></p>
+</footer><!-- /.post-info --><h2>linux命令里的瑞士军刀</h2>
+<p>本文是转载的。<a href="http://www.aqee.net/what-are-the-most-useful-swiss-army-knife-one-liners-on-unix/">http://www.aqee.net/what-are-the-most-useful-swiss-army-knife-one-liners-on-unix/</a>  <br />
+这里说的“瑞士军刀”是指那些简单的一句命令就能完成其它高级语言一大片代码才能完成的工作。
+   下面的这些内容是Quora网站上Joshua Levy网友的总结：  </p>
+<ul>
+<li>
+<p>通过sort/uniq获取文件内容的交集、合集和不同之处：假设有a、b两个文本文件，文件本身已经去除了重复内容。下面是效率最高的方法，可以处理任何体积的文件，甚至几个G的文件。(Sort对内存没有要求，但也许你需要用 -T 参数。)可以试着比较一下，你可以看看如果用Java来处理磁盘上文件的合并，需要用多少行代码。</p>
+<div class="highlight"><pre><span class="n">cat</span> <span class="n">a</span> <span class="n">b</span> <span class="o">|</span> <span class="n">sort</span> <span class="o">|</span> <span class="n">uniq</span> <span class="o">&gt;</span> <span class="n">c</span>   <span class="c1">// c是a和b的合集</span>
+<span class="n">cat</span> <span class="n">a</span> <span class="n">b</span> <span class="o">|</span> <span class="n">sort</span> <span class="o">|</span> <span class="n">uniq</span> <span class="o">-</span><span class="n">d</span> <span class="o">&gt;</span> <span class="n">c</span>  <span class="c1">// c是a和b的交集</span>
+<span class="n">cat</span> <span class="n">a</span> <span class="n">b</span> <span class="n">b</span> <span class="o">|</span> <span class="n">sort</span> <span class="o">|</span> <span class="n">uniq</span> <span class="o">-</span><span class="n">u</span> <span class="o">&gt;</span> <span class="n">c</span>  <span class="c1">// c是a和b的不同</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>汇总一个文本内容里第三列数字的和(这个方法要比用Python来做快3倍并只需1/3的代码量):    </p>
+<div class="highlight"><pre><span class="n">awk</span> <span class="err">&#39;</span><span class="p">{</span> <span class="n">x</span> <span class="o">+=</span> <span class="err">$</span><span class="mi">3</span> <span class="p">}</span> <span class="n">END</span> <span class="p">{</span> <span class="n">print</span> <span class="n">x</span> <span class="p">}</span><span class="err">&#39;</span> <span class="n">myfile</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>如果你想查看一个目录树里的文件的体积和修改日期，用下面的方法，相当于你挨个目录做”ls -l”，而且输出的形式比你用”ls -lR”更可读：　</p>
+<div class="highlight"><pre><span class="n">find</span> <span class="p">.</span> <span class="o">-</span><span class="n">type</span> <span class="n">f</span> <span class="o">-</span><span class="n">ls</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>使用xargs命令。这个命令非常的强大。注意每行上你可以控制多少个东西的执行。如果你不确定它是正确的执行，先使用xargs echo。同样，-I{} 也非常有用。例子：</p>
+<div class="highlight"><pre><span class="nx">find</span> <span class="p">.</span> <span class="o">-</span><span class="nx">name</span> <span class="err">\</span><span class="o">*</span><span class="p">.</span><span class="nx">py</span> <span class="o">|</span> <span class="nx">xargs</span> <span class="nx">grep</span> <span class="nx">some_function</span>
+<span class="nx">cat</span> <span class="nx">hosts</span> <span class="o">|</span> <span class="nx">xargs</span> <span class="o">-</span><span class="nx">I</span><span class="p">{}</span> <span class="nx">ssh</span> <span class="nx">root</span><span class="err">@</span><span class="p">{}</span> <span class="nx">hostname</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>假设你有一个文本文件，比如一个web服务器日志，在某些行上有一些值，比如URL中的acct_id参数。如果你想统计每个acct_id的所有请求记录：</p>
+<div class="highlight"><pre><span class="n">cat</span> <span class="n">access</span><span class="p">.</span><span class="n">log</span> <span class="o">|</span> <span class="n">egrep</span> <span class="o">-</span><span class="n">o</span> <span class="err">‘</span><span class="n">acct_id</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="o">-</span><span class="mi">9</span><span class="p">]</span><span class="o">+</span><span class="err">’</span> <span class="o">|</span> <span class="n">cut</span> <span class="o">-</span><span class="n">d</span><span class="o">=</span> <span class="o">-</span><span class="n">f2</span> <span class="o">|</span> <span class="n">sort</span> <span class="o">|</span> <span class="n">uniq</span> <span class="o">-</span><span class="n">c</span> <span class="o">|</span> <span class="n">sort</span> <span class="o">-</span><span class="n">rn</span>
+</pre></div>
+
+
+</li>
+</ul>                </article>
+                            </aside><!-- /#featured -->
+                            <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+                                                
+
+                 
+                        <li><article class="hentry">    
+                <header>
+                    <h1><a href="/./Linux/命令行快捷键.html" rel="bookmark"
+                           title="Permalink to 命令行快捷键">命令行快捷键</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2013-04-23T08:20:00">
+                Tue 23 April 2013
+        </abbr>
+
+                <address class="vcard author">
+                By <a class="url fn" href="/author/liuhatry.html">liuhatry</a>
+        </address>
+        <p>In <a href="/category/linux.html">Linux</a>. </p>
+<p>tags: <a href="/tag/linux.html">Linux</a><a href="/tag/ming-ling-xing.html">命令行</a></p>
+</footer><!-- /.post-info -->                
+                <a class="readmore" href="/./Linux/命令行快捷键.html">read more</a>
+                                </div><!-- /.entry-content -->
+            </article></li>
+                            </ol><!-- /#posts-list -->
+                            <p class="paginator">
+        Page 1 / 1
+    </p>
+                        </section><!-- /#content -->
+                    <section id="extras" class="body">
+                        <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                                                    <li><a href="https://launchpad.net/~liuhatry">Liuhatry's launchpad</a></li>
+                                                    <li><a href="http://blog.sina.com.cn/u/2466248683">Liuhatry's sina blog</a></li>
+                                                    <li><a href="http://weibo.com/u/2466248683#1343958047973">Liuhatry's weibo</a></li>
+                                                </ul>
+                </div><!-- /.blogroll -->
+                                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="/None" type="application/atom+xml" rel="alternate">atom feed</a></li>
+                            
+                                                    <li><a href="http://bbs.byr.cn/#!default">byr forum</a></li>
+                                                </ul>
+                </div><!-- /.social -->
+                </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

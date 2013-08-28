@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
         <meta charset="utf-8">
-        <title>liuhatry's Blog</title>
+        <title>C语言学习笔记二</title>
         <link rel="stylesheet" href="/theme/css/main.css">
                 
         <!--[if IE]>
@@ -15,19 +15,57 @@
                 <h1><a href="/">liuhatry's Blog </a></h1>
                 <nav><ul>
                                                                                     <li ><a href="/category/cxue-xi-bi-ji.html">C++学习笔记</a></li>
-                                    <li ><a href="/category/cyu-yan-xue-xi-bi-ji.html">C语言学习笔记</a></li>
+                                    <li class="active"><a href="/category/cyu-yan-xue-xi-bi-ji.html">C语言学习笔记</a></li>
                                     <li ><a href="/category/linux.html">Linux</a></li>
                                     <li ><a href="/category/stl.html">STL</a></li>
                                     <li ><a href="/category/shell.html">Shell</a></li>
                                                 </ul></nav>
         </header><!-- /#banner -->
-        <ul>
-    <li><a href="/category/cxue-xi-bi-ji.html">C++学习笔记</a></li>
-    <li><a href="/category/cyu-yan-xue-xi-bi-ji.html">C语言学习笔记</a></li>
-    <li><a href="/category/linux.html">Linux</a></li>
-    <li><a href="/category/stl.html">STL</a></li>
-    <li><a href="/category/shell.html">Shell</a></li>
+        <section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/./C语言学习笔记/C语言学习笔记二.html" rel="bookmark"
+           title="Permalink to C语言学习笔记二">C语言学习笔记二</a></h1>
+          </header>
+
+    <div class="entry-content">
+      <footer class="post-info">
+        <abbr class="published" title="2011-12-08T18:00:00">
+                Thu 08 December 2011
+        </abbr>
+
+                <address class="vcard author">
+                By <a class="url fn" href="/author/liuhatry.html">liuhatry</a>
+        </address>
+        <p>In <a href="/category/cyu-yan-xue-xi-bi-ji.html">C语言学习笔记</a>. </p>
+<p>tags: <a href="/tag/cyu-yan.html">C语言</a><a href="/tag/xue-xi-bi-ji.html">学习笔记</a></p>
+</footer><!-- /.post-info -->      <h2>C语言学习笔记一</h2>
+<h3>C语言实现多态</h3>
+<ul>
+<li>
+<p>编译多态  使用万能指针</p>
+<div class="highlight"><pre><span class="k">struct</span> <span class="p">{</span>
+    <span class="kt">void</span> <span class="o">*</span> <span class="n">value</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>运行多态,使用函数指针  </p>
+<div class="highlight"><pre><span class="k">struct</span> <span class="p">{</span>
+    <span class="kt">void</span> <span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="n">p</span><span class="p">)(</span><span class="kt">void</span><span class="o">*</span><span class="p">);</span>
+<span class="p">};</span>
+</pre></div>
+
+
+</li>
 </ul>
+    </div><!-- /.entry-content -->
+    
+  </article>
+</section>
         <section id="extras" class="body">
                         <div class="blogroll">
                         <h2>blogroll</h2>

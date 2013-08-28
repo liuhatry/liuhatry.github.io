@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8">
+        <title>C++学习笔记二（类访问控制）</title>
+        <link rel="stylesheet" href="/theme/css/main.css">
+                
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">liuhatry's Blog </a></h1>
+                <nav><ul>
+                                                                                    <li class="active"><a href="/category/cxue-xi-bi-ji.html">C++学习笔记</a></li>
+                                    <li ><a href="/category/cyu-yan-xue-xi-bi-ji.html">C语言学习笔记</a></li>
+                                    <li ><a href="/category/linux.html">Linux</a></li>
+                                    <li ><a href="/category/stl.html">STL</a></li>
+                                    <li ><a href="/category/shell.html">Shell</a></li>
+                                                </ul></nav>
+        </header><!-- /#banner -->
+        <section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/./C++学习笔记/C++学习笔记二_类访问控制.html" rel="bookmark"
+           title="Permalink to C++学习笔记二（类访问控制）">C++学习笔记二（类访问控制）</a></h1>
+          </header>
+
+    <div class="entry-content">
+      <footer class="post-info">
+        <abbr class="published" title="2012-11-08T11:00:00">
+                Thu 08 November 2012
+        </abbr>
+
+                <address class="vcard author">
+                By <a class="url fn" href="/author/liuhatry.html">liuhatry</a>
+        </address>
+        <p>In <a href="/category/cxue-xi-bi-ji.html">C++学习笔记</a>. </p>
+<p>tags: <a href="/tag/c.html">C++</a><a href="/tag/xue-xi-bi-ji.html">学习笔记</a></p>
+</footer><!-- /.post-info -->      <h3>类访问控制</h3>
+<h4>private, public, protected 访问标号的访问范围</h4>
+<ul>
+<li>
+<p>private：只能由1.该类中的函数、2.其友元函数访问。
+不能被任何其他访问，该类的对象也不能访问。</p>
+</li>
+<li>
+<p>protected：可以被1.该类中的函数、2.子类的函数、以及3.其友元函数访问。
+但不能被该类的对象访问。</p>
+</li>
+<li>
+<p>public：可以被1.该类中的函数、2.子类的函数、3.其友元函数访问，也可以由4.该类的对象访问。</p>
+</li>
+</ul>
+<blockquote>
+<p>注：友元函数包括3种：设为友元的普通的非成员函数；设为友元的其他类的成员函数；设为友元类中的所有成员函数。</p>
+</blockquote>
+<h4>类的继承后方法属性变化</h4>
+<ul>
+<li>private继承，父类的protected和public属性在子类中变为private；</li>
+<li>protected继承，父类的protected和public属性在子类中变为protected；</li>
+<li>public继承，父类中的protected和public属性不发生改变; </li>
+</ul>
+<blockquote>
+<p><strong>private 属性不能够被继承。</strong></p>
+</blockquote>
+<h4>Tips</h4>
+<ul>
+<li>public 继承是is-a的关系</li>
+<li>复合是：has-a的关系(应用域)或者根据某物实现出(实现域)</li>
+<li>private继承是根据某物实现出的关系，优先选用复合，只在derived class 需要访问base class的protected的时候或者需要重新定义继承而来的virtual函数时才采用private继承</li>
+</ul>
+<blockquote>
+<p>有关has-a和is-a的关系可以参考Effective C++相关章节。</p>
+</blockquote>
+    </div><!-- /.entry-content -->
+    
+  </article>
+</section>
+        <section id="extras" class="body">
+                        <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                                                    <li><a href="https://launchpad.net/~liuhatry">Liuhatry's launchpad</a></li>
+                                                    <li><a href="http://blog.sina.com.cn/u/2466248683">Liuhatry's sina blog</a></li>
+                                                    <li><a href="http://weibo.com/u/2466248683#1343958047973">Liuhatry's weibo</a></li>
+                                                </ul>
+                </div><!-- /.blogroll -->
+                                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="/None" type="application/atom+xml" rel="alternate">atom feed</a></li>
+                            
+                                                    <li><a href="http://bbs.byr.cn/#!default">byr forum</a></li>
+                                                </ul>
+                </div><!-- /.social -->
+                </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

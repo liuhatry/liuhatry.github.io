@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
         <meta charset="utf-8">
-        <title>liuhatry's Blog</title>
+        <title>常用命令</title>
         <link rel="stylesheet" href="/theme/css/main.css">
                 
         <!--[if IE]>
@@ -18,16 +18,83 @@
                                     <li ><a href="/category/cyu-yan-xue-xi-bi-ji.html">C语言学习笔记</a></li>
                                     <li ><a href="/category/linux.html">Linux</a></li>
                                     <li ><a href="/category/stl.html">STL</a></li>
-                                    <li ><a href="/category/shell.html">Shell</a></li>
+                                    <li class="active"><a href="/category/shell.html">Shell</a></li>
                                                 </ul></nav>
         </header><!-- /#banner -->
-        <ul>
-    <li><a href="/category/cxue-xi-bi-ji.html">C++学习笔记</a></li>
-    <li><a href="/category/cyu-yan-xue-xi-bi-ji.html">C语言学习笔记</a></li>
-    <li><a href="/category/linux.html">Linux</a></li>
-    <li><a href="/category/stl.html">STL</a></li>
-    <li><a href="/category/shell.html">Shell</a></li>
+        <section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/./Shell/常用命令.html" rel="bookmark"
+           title="Permalink to 常用命令">常用命令</a></h1>
+          </header>
+
+    <div class="entry-content">
+      <footer class="post-info">
+        <abbr class="published" title="2012-09-03T14:20:00">
+                Mon 03 September 2012
+        </abbr>
+
+                <address class="vcard author">
+                By <a class="url fn" href="/author/liuhatry.html">liuhatry</a>
+        </address>
+        <p>In <a href="/category/shell.html">Shell</a>. </p>
+<p>tags: <a href="/tag/linux.html">Linux</a><a href="/tag/shell.html">shell</a><a href="/tag/chang-yong-ming-ling.html">常用命令</a></p>
+</footer><!-- /.post-info -->      <h2>常用命令</h2>
+<h3>后台运行</h3>
+<blockquote>
+<p>command &amp; 退出终端后就不运行了</p>
+<p>nohup command args &amp;    (no hang up)退出终端，也继续运行 </p>
+<blockquote>
+<p>原程序的的标准输出被自动改向到当前目录下的nohup.out文件，起到了log的作用，
+重定向：nohup command &gt; myout.file 2&gt;&amp;1 &amp;</p>
+</blockquote>
+<p>jobs<br />
+bg<br />
+fg </p>
+</blockquote>
+<h3>数据流冲定向</h3>
+<ul>
+<li>
+<p>标准输出：代码为1  </p>
+<blockquote>
+<p>>    或1>     覆盖<br />
+>&gt;  或1&gt;&gt;   累加</p>
+</blockquote>
+</li>
+<li>
+<p>标准错误输出：代码为2</p>
+<blockquote>
+<p>2&gt;<br />
+2&gt;&gt;</p>
+</blockquote>
+</li>
+<li>
+<p>标准输入：代码为0</p>
+<blockquote>
+<p>&lt;<br />
+&lt;&lt;</p>
+</blockquote>
+</li>
+<li>
+<p>双向重定向：tee</p>
+<blockquote>
+<p>last | tee last.list | cut -d " " -f1</p>
+</blockquote>
+</li>
+<li>
+<p>常用技巧</p>
+<blockquote>
+<p>将错误丢弃：2&gt; /dev/null<br />
+将正确与错误同时写入文件：&amp;&gt; file 或 &gt; file 2&gt;&amp;1<br />
+用cat创建文件：cat &gt; filename    输入文字后用Ctrl+D结束输入</p>
+</blockquote>
+</li>
 </ul>
+    </div><!-- /.entry-content -->
+    
+  </article>
+</section>
         <section id="extras" class="body">
                         <div class="blogroll">
                         <h2>blogroll</h2>

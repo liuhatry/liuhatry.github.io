@@ -14,8 +14,11 @@
         <header id="banner" class="body">
                 <h1><a href="/">liuhatry's Blog </a></h1>
                 <nav><ul>
-                                                                                    <li ><a href="/category/c.html">C++</a></li>
-                                    <li ><a href="/category/shell.html">shell</a></li>
+                                                                                    <li ><a href="/category/cxue-xi-bi-ji.html">C++学习笔记</a></li>
+                                    <li ><a href="/category/cyu-yan-xue-xi-bi-ji.html">C语言学习笔记</a></li>
+                                    <li ><a href="/category/linux.html">Linux</a></li>
+                                    <li ><a href="/category/stl.html">STL</a></li>
+                                    <li ><a href="/category/shell.html">Shell</a></li>
                                                 </ul></nav>
         </header><!-- /#banner -->
                 
@@ -23,46 +26,332 @@
 
                             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="/Shell高级技巧.html">Shell高级技巧</a></h1> 
+                    <h1 class="entry-title"><a href="/./Shell/文件处理.html">文件处理</a></h1> 
                     <footer class="post-info">
-        <abbr class="published" title="2010-12-03T10:20:00">
-                Fri 03 December 2010
+        <abbr class="published" title="2013-08-23T16:20:00">
+                Fri 23 August 2013
         </abbr>
 
                 <address class="vcard author">
                 By <a class="url fn" href="/author/liuhatry.html">liuhatry</a>
         </address>
-        <p>In <a href="/category/shell.html">shell</a>. </p>
-<p>tags: <a href="/tag/shell.html">shell</a><a href="/tag/jiao-ben.html">脚本</a></p>
-</footer><!-- /.post-info --><h2>参数代换</h2>
-<div class="highlight"><pre><span class="n">xargs</span> <span class="p">[</span><span class="o">-</span><span class="mi">0</span><span class="n">epn</span><span class="p">]</span> <span class="n">command</span>
-</pre></div>
+        <p>In <a href="/category/shell.html">Shell</a>. </p>
+<p>tags: <a href="/tag/linux.html">Linux</a><a href="/tag/shell.html">shell</a><a href="/tag/wen-jian-chu-li.html">文件处理</a></p>
+</footer><!-- /.post-info --><h2>文件处理</h2>
+<h3>选取命令：cut grep 以行为单位</h3>
+<ul>
+<li>
+<p>cut：取出某部分</p>
+<blockquote>
+<p>cut -d '分隔字符‘ -f fields    cut -d ':' -f 5    cut -d ',' -f 3,5 <br />
+cut -c 字符范围                   cut -c 12- </p>
+</blockquote>
+</li>
+<li>
+<p>grep：若某行含有信息，将该行取出来</p>
+<blockquote>
+<p>-i  忽略大小写 <br />
+-c 计算找到字符串的次数 <br />
+-v 反向选择  <br />
+-r 递归文件夹  <br />
+grep 支持正则表达式 <br />
+egrep 或者 grep -E 支持扩展的正则表达式</p>
+</blockquote>
+</li>
+</ul>
+<h3>排序命令：sort wc uniq</h3>
+<ul>
+<li>
+<p>sort: 以行为单位排序</p>
+<blockquote>
+<p>与语系编码有关
+默认以文字类型排序 -n：以纯数字进行排序 <br />
+-t 分隔符   <br />
+-k 以那个区间进行排序       </p>
+<blockquote>
+<p>sort -t ':' -k 3 <br />
+ sort  -t $'\t'   <strong>以tab键分隔符</strong></p>
+</blockquote>
+</blockquote>
+</li>
+<li>
+<p>uniq: 将重复的行只显示一次</p>
+<blockquote>
+<p>-i 忽略大小写<br />
+-c 进行计数</p>
+</blockquote>
+</li>
+<li>
+<p>wc：统计文件含有多少行，多少字，多少字符</p>
+<blockquote>
+<p>-l  行   <br />
+-w 字<br />
+-m 字符  </p>
+</blockquote>
+</li>
+</ul>
+<h3>字符转换命令：tr col join paste expand</h3>
+<ul>
+<li>
+<p>tr：替换（翻译） 或 删除 </p>
+<blockquote>
+<p>-d 删除 <br />
+-s 替换掉重复的字符<br />
+常用技巧：<br />
+tr -d ‘\r'  等价于dos2unix</p>
+</blockquote>
+</li>
+<li>
+<p>col：</p>
+<blockquote>
+<p>-x 将tab 替换成对等的空格<br />
+-b </p>
+</blockquote>
+</li>
+<li>
+<p>join：将两个文件中有相同数据的那一行夹在一起 （处理两个相关的文件，使用前最好先用sort排序）</p>
+<blockquote>
+<p>默认用空格分隔数据，并且对比第一个字段的数据<br />
+-t 指定分隔符<br />
+-1 指定第一个文件使用第几个字段<br />
+-2 指定第二个文件使用第几个字段  </p>
+</blockquote>
+</li>
+<li>
+<p>paste：直接将两行贴在一起，处理不相关的两个文件，中间以tab键分开</p>
+<blockquote>
+<p>-d 指定分隔符 默认tab  </p>
+</blockquote>
+</li>
+<li>
+<p>使用来在标准输入的数据</p>
+</li>
+<li>
+<p>expand：将tab转换成空格</p>
+<blockquote>
+<p>-t 空格的数量</p>
+</blockquote>
+</li>
+</ul>
+<h3>切割命令：split</h3>
+<ul>
+<li>split：以大小或行数来切割文件<blockquote>
+<p>-b 文件大小<br />
+-l 以行数来进行切割  </p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<blockquote>
+<p>常用技巧：  </p>
+<blockquote>
+<p>分割：split -b 300k file filePre<br />
+合成：cat filePre* &gt;&gt; filetemp</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<h3>两个牛逼的命令：sed awk  都支持正则表达式</h3>
+<ul>
+<li>sed：以行为单位  <blockquote>
+<p>sed [-nefr] [动作]   动作需要两个单引号括住</p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>-i 直接修改文件</p>
+<blockquote>
+<p>动作: [n1[,n2]]function   </p>
+<blockquote>
+<p>function: <br />
+a  新增  sed '2a someword'<br />
+c  替换  c后面的字符串直接替换选定的行  sed '2,5c someword' <br />
+d  删除  sed '2,5d'           sed '/^$/d' 删除空白行<br />
+i   插入   sed '2i someword'<br />
+p  打印   sed -n '5,7p'     //必须有-n参数 代表安静模式<br />
+s  替换  sed 's/old/new/g'  </p>
+</blockquote>
+</blockquote>
+</blockquote>
+<ul>
+<li>awk：将一行分成数个字段来处理<blockquote>
+<p>awk ‘条件类型1{动作1}条件类型2{动作2}...' filename<br />
+ 注意必须是单引号，内嵌的字符串只能用双引号了</p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<blockquote>
+<p>awk变量：NF，NR，FS使用时不用加$</p>
+<blockquote>
+<p>NF 每一行的字段数  Number of field<br />
+NR 当前为第几行     Number of record<br />
+FS 目前的分隔符，默认为空格或tab<br />
+$0 当前行数据<br />
+$1 当前行第一个字段  其他类似  </p>
+</blockquote>
+</blockquote>
+<p>技巧：  </p>
+<blockquote>
+<p>设置分隔符：awk ‘BEGIN {FS=“:”} ...'<br />
+一个{}内，若有多个命令，可用;分开</p>
+</blockquote>
+</blockquote>
+<h3>文件的格式化：printf</h3>
+<h3>文件比较工具：diff cmp patch</h3>
+<h3>文件打印准备：pr</h3>                </article>
+                            </aside><!-- /#featured -->
+                            <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+                                                
 
+                 
+                        <li><article class="hentry">    
+                <header>
+                    <h1><a href="/./Shell/变量删除_替换_替代.html" rel="bookmark"
+                           title="Permalink to 变量删除_替换_替代">变量删除_替换_替代</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2013-08-04T08:20:00">
+                Sun 04 August 2013
+        </abbr>
 
-<p>将前面的内容作为后面命令的参数  <br />
--n 使用几个参数 <br />
-默认命令是echo <br />
-例如：</p>
-<div class="highlight"><pre><span class="n">cut</span> <span class="o">-</span><span class="n">d</span> <span class="sc">&#39;:&#39;</span> <span class="o">-</span><span class="n">f1</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">passwd</span> <span class="o">|</span> <span class="n">head</span> <span class="o">-</span><span class="n">n</span> <span class="mi">3</span> <span class="o">|</span> <span class="n">xargs</span> <span class="n">finger</span>
-</pre></div>
+                <address class="vcard author">
+                By <a class="url fn" href="/author/liuhatry.html">liuhatry</a>
+        </address>
+        <p>In <a href="/category/shell.html">Shell</a>. </p>
+<p>tags: <a href="/tag/linux.html">Linux</a><a href="/tag/shell.html">shell</a></p>
+</footer><!-- /.post-info -->                
+                <a class="readmore" href="/./Shell/变量删除_替换_替代.html">read more</a>
+                                </div><!-- /.entry-content -->
+            </article></li>
+                            
 
+                 
+                        <li><article class="hentry">    
+                <header>
+                    <h1><a href="/./Shell/Shell学习笔记二.html" rel="bookmark"
+                           title="Permalink to Shell学习笔记二">Shell学习笔记二</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2013-07-03T08:20:00">
+                Wed 03 July 2013
+        </abbr>
 
-<p>使用技巧：
-某些命令并不能使用管道命令,通过xargs传递。  </p>
-<div class="highlight"><pre><span class="n">find</span> <span class="o">-/</span><span class="n">home</span> <span class="o">-</span><span class="n">name</span> <span class="n">liu</span> <span class="o">|</span> <span class="n">xargs</span> <span class="n">ls</span>
-</pre></div>
+                <address class="vcard author">
+                By <a class="url fn" href="/author/liuhatry.html">liuhatry</a>
+        </address>
+        <p>In <a href="/category/shell.html">Shell</a>. </p>
+<p>tags: <a href="/tag/linux.html">Linux</a><a href="/tag/shell.html">shell</a></p>
+</footer><!-- /.post-info -->                
+                <a class="readmore" href="/./Shell/Shell学习笔记二.html">read more</a>
+                                </div><!-- /.entry-content -->
+            </article></li>
+                            
 
+                 
+                        <li><article class="hentry">    
+                <header>
+                    <h1><a href="/./Shell/Shell学习笔记一.html" rel="bookmark"
+                           title="Permalink to Shell学习笔记一">Shell学习笔记一</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2013-06-03T08:20:00">
+                Mon 03 June 2013
+        </abbr>
 
-<h2>减号 -</h2>
-<p>某些命令需要用到文件名，则stdin与stdout 可以用减号来替代</p>
-<div class="highlight"><pre><span class="n">tar</span> <span class="o">-</span><span class="n">cvf</span> <span class="o">-</span> <span class="o">/</span><span class="n">home</span> <span class="o">|</span> <span class="n">tar</span> <span class="o">-</span><span class="n">xvf</span> <span class="o">-</span>
-<span class="n">ls</span> <span class="o">|</span> <span class="n">vim</span> <span class="o">-</span>
-</pre></div>                </article>
-                                    <p class="paginator">
+                <address class="vcard author">
+                By <a class="url fn" href="/author/liuhatry.html">liuhatry</a>
+        </address>
+        <p>In <a href="/category/shell.html">Shell</a>. </p>
+<p>tags: <a href="/tag/linux.html">Linux</a><a href="/tag/shell.html">shell</a></p>
+</footer><!-- /.post-info -->                
+                <a class="readmore" href="/./Shell/Shell学习笔记一.html">read more</a>
+                                </div><!-- /.entry-content -->
+            </article></li>
+                            
+
+                 
+                        <li><article class="hentry">    
+                <header>
+                    <h1><a href="/./Shell/linux命令里的瑞士军刀.html" rel="bookmark"
+                           title="Permalink to linux命令里的瑞士军刀">linux命令里的瑞士军刀</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2013-05-03T08:20:00">
+                Fri 03 May 2013
+        </abbr>
+
+                <address class="vcard author">
+                By <a class="url fn" href="/author/liuhatry.html">liuhatry</a>
+        </address>
+        <p>In <a href="/category/shell.html">Shell</a>. </p>
+<p>tags: <a href="/tag/linux.html">Linux</a><a href="/tag/ming-ling-xing.html">命令行</a><a href="/tag/shell.html">shell</a></p>
+</footer><!-- /.post-info -->                
+                <a class="readmore" href="/./Shell/linux命令里的瑞士军刀.html">read more</a>
+                                </div><!-- /.entry-content -->
+            </article></li>
+                            
+
+                 
+                        <li><article class="hentry">    
+                <header>
+                    <h1><a href="/./Shell/常用命令.html" rel="bookmark"
+                           title="Permalink to 常用命令">常用命令</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2012-09-03T14:20:00">
+                Mon 03 September 2012
+        </abbr>
+
+                <address class="vcard author">
+                By <a class="url fn" href="/author/liuhatry.html">liuhatry</a>
+        </address>
+        <p>In <a href="/category/shell.html">Shell</a>. </p>
+<p>tags: <a href="/tag/linux.html">Linux</a><a href="/tag/shell.html">shell</a><a href="/tag/chang-yong-ming-ling.html">常用命令</a></p>
+</footer><!-- /.post-info -->                
+                <a class="readmore" href="/./Shell/常用命令.html">read more</a>
+                                </div><!-- /.entry-content -->
+            </article></li>
+                            
+
+                 
+                        <li><article class="hentry">    
+                <header>
+                    <h1><a href="/./Shell/Shell高级技巧.html" rel="bookmark"
+                           title="Permalink to Shell高级技巧">Shell高级技巧</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2012-08-03T09:20:00">
+                Fri 03 August 2012
+        </abbr>
+
+                <address class="vcard author">
+                By <a class="url fn" href="/author/liuhatry.html">liuhatry</a>
+        </address>
+        <p>In <a href="/category/shell.html">Shell</a>. </p>
+<p>tags: <a href="/tag/linux.html">Linux</a><a href="/tag/shell.html">shell</a></p>
+</footer><!-- /.post-info -->                
+                <a class="readmore" href="/./Shell/Shell高级技巧.html">read more</a>
+                                </div><!-- /.entry-content -->
+            </article></li>
+                            </ol><!-- /#posts-list -->
+                            <p class="paginator">
         Page 1 / 1
     </p>
-                            </aside><!-- /#featured -->
-                                                </ol><!-- /#posts-list -->
                         </section><!-- /#content -->
                     <section id="extras" class="body">
                         <div class="blogroll">

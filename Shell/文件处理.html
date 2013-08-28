@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8">
+        <title>文件处理</title>
+        <link rel="stylesheet" href="/theme/css/main.css">
+                
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">liuhatry's Blog </a></h1>
+                <nav><ul>
+                                                                                    <li ><a href="/category/cxue-xi-bi-ji.html">C++学习笔记</a></li>
+                                    <li ><a href="/category/cyu-yan-xue-xi-bi-ji.html">C语言学习笔记</a></li>
+                                    <li ><a href="/category/linux.html">Linux</a></li>
+                                    <li ><a href="/category/stl.html">STL</a></li>
+                                    <li class="active"><a href="/category/shell.html">Shell</a></li>
+                                                </ul></nav>
+        </header><!-- /#banner -->
+        <section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/./Shell/文件处理.html" rel="bookmark"
+           title="Permalink to 文件处理">文件处理</a></h1>
+          </header>
+
+    <div class="entry-content">
+      <footer class="post-info">
+        <abbr class="published" title="2013-08-23T16:20:00">
+                Fri 23 August 2013
+        </abbr>
+
+                <address class="vcard author">
+                By <a class="url fn" href="/author/liuhatry.html">liuhatry</a>
+        </address>
+        <p>In <a href="/category/shell.html">Shell</a>. </p>
+<p>tags: <a href="/tag/linux.html">Linux</a><a href="/tag/shell.html">shell</a><a href="/tag/wen-jian-chu-li.html">文件处理</a></p>
+</footer><!-- /.post-info -->      <h2>文件处理</h2>
+<h3>选取命令：cut grep 以行为单位</h3>
+<ul>
+<li>
+<p>cut：取出某部分</p>
+<blockquote>
+<p>cut -d '分隔字符‘ -f fields    cut -d ':' -f 5    cut -d ',' -f 3,5 <br />
+cut -c 字符范围                   cut -c 12- </p>
+</blockquote>
+</li>
+<li>
+<p>grep：若某行含有信息，将该行取出来</p>
+<blockquote>
+<p>-i  忽略大小写 <br />
+-c 计算找到字符串的次数 <br />
+-v 反向选择  <br />
+-r 递归文件夹  <br />
+grep 支持正则表达式 <br />
+egrep 或者 grep -E 支持扩展的正则表达式</p>
+</blockquote>
+</li>
+</ul>
+<h3>排序命令：sort wc uniq</h3>
+<ul>
+<li>
+<p>sort: 以行为单位排序</p>
+<blockquote>
+<p>与语系编码有关
+默认以文字类型排序 -n：以纯数字进行排序 <br />
+-t 分隔符   <br />
+-k 以那个区间进行排序       </p>
+<blockquote>
+<p>sort -t ':' -k 3 <br />
+ sort  -t $'\t'   <strong>以tab键分隔符</strong></p>
+</blockquote>
+</blockquote>
+</li>
+<li>
+<p>uniq: 将重复的行只显示一次</p>
+<blockquote>
+<p>-i 忽略大小写<br />
+-c 进行计数</p>
+</blockquote>
+</li>
+<li>
+<p>wc：统计文件含有多少行，多少字，多少字符</p>
+<blockquote>
+<p>-l  行   <br />
+-w 字<br />
+-m 字符  </p>
+</blockquote>
+</li>
+</ul>
+<h3>字符转换命令：tr col join paste expand</h3>
+<ul>
+<li>
+<p>tr：替换（翻译） 或 删除 </p>
+<blockquote>
+<p>-d 删除 <br />
+-s 替换掉重复的字符<br />
+常用技巧：<br />
+tr -d ‘\r'  等价于dos2unix</p>
+</blockquote>
+</li>
+<li>
+<p>col：</p>
+<blockquote>
+<p>-x 将tab 替换成对等的空格<br />
+-b </p>
+</blockquote>
+</li>
+<li>
+<p>join：将两个文件中有相同数据的那一行夹在一起 （处理两个相关的文件，使用前最好先用sort排序）</p>
+<blockquote>
+<p>默认用空格分隔数据，并且对比第一个字段的数据<br />
+-t 指定分隔符<br />
+-1 指定第一个文件使用第几个字段<br />
+-2 指定第二个文件使用第几个字段  </p>
+</blockquote>
+</li>
+<li>
+<p>paste：直接将两行贴在一起，处理不相关的两个文件，中间以tab键分开</p>
+<blockquote>
+<p>-d 指定分隔符 默认tab  </p>
+</blockquote>
+</li>
+<li>
+<p>使用来在标准输入的数据</p>
+</li>
+<li>
+<p>expand：将tab转换成空格</p>
+<blockquote>
+<p>-t 空格的数量</p>
+</blockquote>
+</li>
+</ul>
+<h3>切割命令：split</h3>
+<ul>
+<li>split：以大小或行数来切割文件<blockquote>
+<p>-b 文件大小<br />
+-l 以行数来进行切割  </p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<blockquote>
+<p>常用技巧：  </p>
+<blockquote>
+<p>分割：split -b 300k file filePre<br />
+合成：cat filePre* &gt;&gt; filetemp</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<h3>两个牛逼的命令：sed awk  都支持正则表达式</h3>
+<ul>
+<li>sed：以行为单位  <blockquote>
+<p>sed [-nefr] [动作]   动作需要两个单引号括住</p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>-i 直接修改文件</p>
+<blockquote>
+<p>动作: [n1[,n2]]function   </p>
+<blockquote>
+<p>function: <br />
+a  新增  sed '2a someword'<br />
+c  替换  c后面的字符串直接替换选定的行  sed '2,5c someword' <br />
+d  删除  sed '2,5d'           sed '/^$/d' 删除空白行<br />
+i   插入   sed '2i someword'<br />
+p  打印   sed -n '5,7p'     //必须有-n参数 代表安静模式<br />
+s  替换  sed 's/old/new/g'  </p>
+</blockquote>
+</blockquote>
+</blockquote>
+<ul>
+<li>awk：将一行分成数个字段来处理<blockquote>
+<p>awk ‘条件类型1{动作1}条件类型2{动作2}...' filename<br />
+ 注意必须是单引号，内嵌的字符串只能用双引号了</p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<blockquote>
+<p>awk变量：NF，NR，FS使用时不用加$</p>
+<blockquote>
+<p>NF 每一行的字段数  Number of field<br />
+NR 当前为第几行     Number of record<br />
+FS 目前的分隔符，默认为空格或tab<br />
+$0 当前行数据<br />
+$1 当前行第一个字段  其他类似  </p>
+</blockquote>
+</blockquote>
+<p>技巧：  </p>
+<blockquote>
+<p>设置分隔符：awk ‘BEGIN {FS=“:”} ...'<br />
+一个{}内，若有多个命令，可用;分开</p>
+</blockquote>
+</blockquote>
+<h3>文件的格式化：printf</h3>
+<h3>文件比较工具：diff cmp patch</h3>
+<h3>文件打印准备：pr</h3>
+    </div><!-- /.entry-content -->
+    
+  </article>
+</section>
+        <section id="extras" class="body">
+                        <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                                                    <li><a href="https://launchpad.net/~liuhatry">Liuhatry's launchpad</a></li>
+                                                    <li><a href="http://blog.sina.com.cn/u/2466248683">Liuhatry's sina blog</a></li>
+                                                    <li><a href="http://weibo.com/u/2466248683#1343958047973">Liuhatry's weibo</a></li>
+                                                </ul>
+                </div><!-- /.blogroll -->
+                                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="/None" type="application/atom+xml" rel="alternate">atom feed</a></li>
+                            
+                                                    <li><a href="http://bbs.byr.cn/#!default">byr forum</a></li>
+                                                </ul>
+                </div><!-- /.social -->
+                </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

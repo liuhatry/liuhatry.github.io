@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
         <meta charset="utf-8">
-        <title>liuhatry's Blog - C++</title>
+        <title>liuhatry's Blog - 学习笔记</title>
         <link rel="stylesheet" href="/theme/css/main.css">
                 
         <!--[if IE]>
@@ -26,8 +26,46 @@
 
                             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="/./C++学习笔记/C++学习笔记一_匿名命名空间.html">C++学习笔记一（匿名命名空间）</a></h1> 
+                    <h1 class="entry-title"><a href="/./Linux/Linux学习笔记一.html">Linux学习笔记一</a></h1> 
                     <footer class="post-info">
+        <abbr class="published" title="2013-03-13T18:20:00">
+                Wed 13 March 2013
+        </abbr>
+
+                <address class="vcard author">
+                By <a class="url fn" href="/author/liuhatry.html">liuhatry</a>
+        </address>
+        <p>In <a href="/category/linux.html">Linux</a>. </p>
+<p>tags: <a href="/tag/linux.html">Linux</a><a href="/tag/xue-xi-bi-ji.html">学习笔记</a></p>
+</footer><!-- /.post-info --><h2>Linux学习笔记一</h2>
+<h3>gcc warnings</h3>
+<blockquote>
+<p>-w      忽略所有警告</p>
+<p>-W 压缩警告:</p>
+<blockquote>
+<p>1.-Wall 打开几乎所有警告<br />
+2.-W  默认的一些警告<br />
+3.-Wall -W 比1还多一些警告<br />
+4.-Wunused 只显示unusd类型的警告<br />
+5.-Werror  把警告当做error处理  </p>
+</blockquote>
+</blockquote>                </article>
+                            </aside><!-- /#featured -->
+                            <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+                                                
+
+                 
+                        <li><article class="hentry">    
+                <header>
+                    <h1><a href="/./C++学习笔记/C++学习笔记一_匿名命名空间.html" rel="bookmark"
+                           title="Permalink to C++学习笔记一（匿名命名空间）">C++学习笔记一（匿名命名空间）</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
         <abbr class="published" title="2013-02-13T18:20:00">
                 Wed 13 February 2013
         </abbr>
@@ -37,84 +75,11 @@
         </address>
         <p>In <a href="/category/cxue-xi-bi-ji.html">C++学习笔记</a>. </p>
 <p>tags: <a href="/tag/c.html">C++</a><a href="/tag/xue-xi-bi-ji.html">学习笔记</a></p>
-</footer><!-- /.post-info --><h2>C++学习笔记一（匿名命名空间）</h2>
-<h3>匿名命名空间</h3>
-<h4>链接属性</h4>
-<blockquote>
-<p>标识符的链接属性  <br />
-主要用于处理多次声明相同的标识符名称后，如何判断这些标识符是否是同一个。</p>
-<blockquote>
-<p>链接属性(linkage)是相对于相同的标识符名称来说的，对于不同的标识符，没有链接属性。 <br />
-按照C99（章节6.2.2），链接属性分为三种：external（外部的）， internal（内部的）， none（无）。    </p>
-</blockquote>
-</blockquote>
-<ul>
-<li>
-<p><strong>外部  external</strong>   同一个标识符，即使在不同的文件中，也表示同一个实体。     </p>
-<blockquote>
-<p>①具有文件作用域的变量和函数。  <br />
-②代码块作用域内部的函数声明。</p>
-</blockquote>
-</li>
-<li>
-<p><strong>内部  internal</strong>  同一个标识符，仅仅在同一个文件中才表示同一个实体。   </p>
-<blockquote>
-<p>无（如果不使用static，那么默认没有内部链接属性的标识符。只有被static修饰的具有文件作用域的标识符，才具有internal链接属性）   </p>
-</blockquote>
-</li>
-<li>
-<p><strong>无  none</strong>   表示不同的实体 </p>
-<blockquote>
-<p>所有其他的标识符。如：函数的参数、代码块作用域的变量、标签等</p>
-</blockquote>
-</li>
-</ul>
-<h4>问题引出</h4>
-<p>在多个tu内定义的全局变量名称相同，会有冲突。（外部链接属性）</p>
-<blockquote>
-<p>多个tu（translation unit）中外部链接属性的标示符实际上属于一个实体，不允许重复</p>
-</blockquote>
-<h4>解决方法</h4>
-<h5>C++继承了C语言中static关键字的这个用途</h5>
-<p>使用static，定义成内部链接属性</p>
-<blockquote></blockquote>
-<h5>匿名namespace</h5>
-<p>当定义一个命名空间时，可以忽略这个命名空间的名称：    </p>
-<div class="highlight"><pre><span class="n">namespce</span> <span class="p">{</span>
-    <span class="kt">char</span> <span class="n">c</span><span class="p">;</span>
-    <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
-    <span class="kt">double</span> <span class="n">d</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-
-
-<p>编译器在内部会为这个命名空间生成一个唯一的名字，而且还会为这个匿名的命名空间生成一条using指令。所以上面的代码在效果上等同于：</p>
-<div class="highlight"><pre><span class="n">namespace</span> <span class="n">__UNIQUE_NAME_</span> <span class="p">{</span>
-    <span class="kt">char</span> <span class="n">c</span><span class="p">;</span>
-    <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
-    <span class="kt">double</span> <span class="n">d</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="n">using</span> <span class="n">namespace</span> <span class="n">__UNIQUE_NAME_</span><span class="p">;</span>
-</pre></div>
-
-
-<ul>
-<li>在匿名命名空间中声明的名称也将被编译器转换，与编译器为这个匿名命名空间生成的唯一内部名称(即这里的__UNIQUE_NAME_)绑定在一起。</li>
-<li>在一个tu中可以出现多个匿名namespace，并且相同层次的匿名namespace实际上被合成为同一个；</li>
-<li>出现在不同tu的匿名namespace中的相同标识符相互独立不会发生冲突，效果与加static相同。</li>
-</ul>
-<h4>总结</h4>
-<ul>
-<li>核心是要把external属性变成internel，无论使用static还是匿名命名空间</li>
-<li>C++ 新的标准中提倡使用匿名命名空间,而不推荐使用static,因为static用在不同的地方,涵义不同,容易造成混淆.另外,static不能修饰class</li>
-<li>命名空间都是具有external 连接属性的,只是匿名的命名空间产生的__UNIQUE_NAME__在别的文件中无法得到,这个唯一的名字是不可见的.</li>
-</ul>                </article>
-                            </aside><!-- /#featured -->
-                            <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
-                                                
+</footer><!-- /.post-info -->                
+                <a class="readmore" href="/./C++学习笔记/C++学习笔记一_匿名命名空间.html">read more</a>
+                                </div><!-- /.entry-content -->
+            </article></li>
+                            
 
                  
                         <li><article class="hentry">    
@@ -184,6 +149,78 @@
 <p>tags: <a href="/tag/c.html">C++</a><a href="/tag/xue-xi-bi-ji.html">学习笔记</a></p>
 </footer><!-- /.post-info -->                
                 <a class="readmore" href="/./C++学习笔记/两个类互相引用.html">read more</a>
+                                </div><!-- /.entry-content -->
+            </article></li>
+                            
+
+                 
+                        <li><article class="hentry">    
+                <header>
+                    <h1><a href="/./Shell/STL学习笔记一_容器底层实现.html" rel="bookmark"
+                           title="Permalink to STL学习笔记一（容器底层实现）">STL学习笔记一（容器底层实现）</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2012-05-03T08:20:00">
+                Thu 03 May 2012
+        </abbr>
+
+                <address class="vcard author">
+                By <a class="url fn" href="/author/liuhatry.html">liuhatry</a>
+        </address>
+        <p>In <a href="/category/stl.html">STL</a>. </p>
+<p>tags: <a href="/tag/stl.html">STL</a><a href="/tag/xue-xi-bi-ji.html">学习笔记</a></p>
+</footer><!-- /.post-info -->                
+                <a class="readmore" href="/./Shell/STL学习笔记一_容器底层实现.html">read more</a>
+                                </div><!-- /.entry-content -->
+            </article></li>
+                            
+
+                 
+                        <li><article class="hentry">    
+                <header>
+                    <h1><a href="/./C语言学习笔记/C语言学习笔记二.html" rel="bookmark"
+                           title="Permalink to C语言学习笔记二">C语言学习笔记二</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2011-12-08T18:00:00">
+                Thu 08 December 2011
+        </abbr>
+
+                <address class="vcard author">
+                By <a class="url fn" href="/author/liuhatry.html">liuhatry</a>
+        </address>
+        <p>In <a href="/category/cyu-yan-xue-xi-bi-ji.html">C语言学习笔记</a>. </p>
+<p>tags: <a href="/tag/cyu-yan.html">C语言</a><a href="/tag/xue-xi-bi-ji.html">学习笔记</a></p>
+</footer><!-- /.post-info -->                
+                <a class="readmore" href="/./C语言学习笔记/C语言学习笔记二.html">read more</a>
+                                </div><!-- /.entry-content -->
+            </article></li>
+                            
+
+                 
+                        <li><article class="hentry">    
+                <header>
+                    <h1><a href="/./C语言学习笔记/C语言学习笔记一_堆栈.html" rel="bookmark"
+                           title="Permalink to C语言学习笔记一（堆栈）">C语言学习笔记一（堆栈）</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2011-11-08T13:00:00">
+                Tue 08 November 2011
+        </abbr>
+
+                <address class="vcard author">
+                By <a class="url fn" href="/author/liuhatry.html">liuhatry</a>
+        </address>
+        <p>In <a href="/category/cyu-yan-xue-xi-bi-ji.html">C语言学习笔记</a>. </p>
+<p>tags: <a href="/tag/cyu-yan.html">C语言</a><a href="/tag/xue-xi-bi-ji.html">学习笔记</a></p>
+</footer><!-- /.post-info -->                
+                <a class="readmore" href="/./C语言学习笔记/C语言学习笔记一_堆栈.html">read more</a>
                                 </div><!-- /.entry-content -->
             </article></li>
                             </ol><!-- /#posts-list -->

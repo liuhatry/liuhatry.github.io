@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
         <meta charset="utf-8">
-        <title>C++异常</title>
+        <title>Shell学习笔记二</title>
         <link rel="stylesheet" href="/theme/css/main.css">
                 
         <!--[if IE]>
@@ -14,66 +14,59 @@
         <header id="banner" class="body">
                 <h1><a href="/">liuhatry's Blog </a></h1>
                 <nav><ul>
-                                                                                    <li class="active"><a href="/category/c.html">C++</a></li>
-                                    <li ><a href="/category/shell.html">shell</a></li>
+                                                                                    <li ><a href="/category/cxue-xi-bi-ji.html">C++学习笔记</a></li>
+                                    <li ><a href="/category/cyu-yan-xue-xi-bi-ji.html">C语言学习笔记</a></li>
+                                    <li ><a href="/category/linux.html">Linux</a></li>
+                                    <li ><a href="/category/stl.html">STL</a></li>
+                                    <li class="active"><a href="/category/shell.html">Shell</a></li>
                                                 </ul></nav>
         </header><!-- /#banner -->
         <section id="content" class="body">
   <article>
     <header>
       <h1 class="entry-title">
-        <a href="/C++异常.html" rel="bookmark"
-           title="Permalink to C++异常">C++异常</a></h1>
+        <a href="/./Shell/Shell学习笔记二.html" rel="bookmark"
+           title="Permalink to Shell学习笔记二">Shell学习笔记二</a></h1>
           </header>
 
     <div class="entry-content">
       <footer class="post-info">
-        <abbr class="published" title="2010-12-03T10:20:00">
-                Fri 03 December 2010
+        <abbr class="published" title="2013-07-03T08:20:00">
+                Wed 03 July 2013
         </abbr>
 
                 <address class="vcard author">
                 By <a class="url fn" href="/author/liuhatry.html">liuhatry</a>
         </address>
-        <p>In <a href="/category/c.html">C++</a>. </p>
-<p>tags: <a href="/tag/c.html">C++</a><a href="/tag/yi-chang.html">异常</a></p>
-</footer><!-- /.post-info -->      <h2>throw()</h2>
-<div class="highlight"><pre><span class="n">func</span><span class="p">()</span> <span class="n">throw</span><span class="p">()</span>
-</pre></div>
-
-
+        <p>In <a href="/category/shell.html">Shell</a>. </p>
+<p>tags: <a href="/tag/linux.html">Linux</a><a href="/tag/shell.html">shell</a></p>
+</footer><!-- /.post-info -->      <h2>Shell学习笔记二</h2>
+<h3>shell fork炸弹</h3>
+<p>fork炸弹定义就不说了，也有不同的语言版本来实现。<br />
+我们来看一个shell版本的fork炸弹  </p>
 <blockquote>
-<p>它是函数提供者和使用者的一种<strong>君子协定</strong>，标明该函数不抛出任何异常。
-之所以说是君子协定，是因为实际上内部实现是需要人肉确保。 
-所以，在使用该方法的时候，不必把它至于 try/catch 异常处理块中。</p>
+<p>:(){ :|:&amp; };:  </p>
 </blockquote>
-<p><strong>如果一个标明throw()的函数内部发生了throw：</strong>    </p>
-<p>如果内部直接throw something，编译器会发现并指出；  <br />
-如果是内部调用了一个可能throw something的函数，编译器无法发现，运行时一旦这个内部的函数throw，程序会abort。   </p>
-<div class="highlight"><pre><span class="n">func</span><span class="p">()</span> <span class="n">throw</span><span class="p">(</span><span class="n">type</span><span class="p">)</span>
+<dl>
+<dt>本段程序是由Jaromil所作的在类UNIX系统的shell环境下触发fork炸弹的shell脚本代码，总共只用了13个字符（包括空格）</dt>
+<dt>虽然只有13个字符，却可以让你的系统资源耗尽，崩溃</dt>
+<dt>再来看代码的含义，把代码分行号理解：</dt>
+<dt>&gt; :(){            //定义函数</dt>
+<dt>:|: &amp;           //递归调用函数，并使用管道命令再次调用（指数增长），而且把命令放到后台</dt>
+<dt>}</dt>
+<dt>;</dt>
+<dd>
+<div class="highlight"><pre>    <span class="c1">//调用函数</span>
 </pre></div>
 
 
-<p>会抛出某种异常   </p>
-<div class="highlight"><pre><span class="n">func</span><span class="p">()</span> <span class="n">throw</span><span class="p">(..)</span>
-</pre></div>
-
-
-<p>可能是任何类型的异常 </p>
-<div class="highlight"><pre><span class="n">func</span><span class="p">()</span>
-</pre></div>
-
-
-<p>可能抛出任何类型异常    </p>
-<h2>catch()</h2>
-<div class="highlight"><pre><span class="n">try</span><span class="p">{}</span>
-<span class="n">catch</span><span class="p">(</span><span class="n">except1</span><span class="o">&amp;</span><span class="p">){}</span>  <span class="c1">// 接受except1</span>
-<span class="n">catch</span><span class="p">(</span><span class="n">except2</span><span class="o">&amp;</span><span class="p">){}</span>  <span class="c1">// 接受except2</span>
-<span class="n">catch</span><span class="p">(...){}</span> <span class="c1">//接受所有异常</span>
-</pre></div>
-
-
-<p><strong>一般都写成引用（except1&amp;），原因很简单，效率。</strong></p>
+</dd>
+</dl>
+<ul>
+<li>指数增长速度很快，可以然你的系统资源瞬间消耗光</li>
+<li>把命令放到后台可以防止子进程die</li>
+<li>如何防止fork炸弹呢，修改配置文件 /etc/security/limits.cong 可以限制可生成的最大进程数</li>
+</ul>
     </div><!-- /.entry-content -->
     
   </article>
