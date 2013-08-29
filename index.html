@@ -19,6 +19,7 @@
                                     <li ><a href="/category/linux.html">Linux</a></li>
                                     <li ><a href="/category/stl.html">STL</a></li>
                                     <li ><a href="/category/shell.html">Shell</a></li>
+                                    <li ><a href="/category/suan-fa.html">算法</a></li>
                                                 </ul></nav>
         </header><!-- /#banner -->
                 
@@ -377,6 +378,42 @@ $1 当前行第一个字段  其他类似  </p>
                  
                         <li><article class="hentry">    
                 <header>
+                    <h1><a href="/./算法/动态规划之最长公共子序列_不连续.html" rel="bookmark"
+                           title="Permalink to 动态规划之最长公共子序列（不连续）">动态规划之最长公共子序列（不连续）</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2013-01-08T13:00:00">
+                Tue 08 January 2013
+        </abbr>
+
+                <address class="vcard author">
+                By <a class="url fn" href="/author/liuhatry.html">liuhatry</a>
+        </address>
+        <p>In <a href="/category/suan-fa.html">算法</a>. </p>
+<p>tags: <a href="/tag/suan-fa.html">算法</a></p>
+</footer><!-- /.post-info -->                <h2>动态规划之最长公共子序列（不连续）</h2>
+<div class="highlight"><pre><span class="vi">#include</span> <span class="o">&lt;</span><span class="nx">iostream</span><span class="o">&gt;</span>
+<span class="vi">#include</span> <span class="o">&lt;</span><span class="kt">string</span><span class="o">&gt;</span>
+
+<span class="nx">using</span> <span class="nx">std</span><span class="p">::</span><span class="nl">string</span><span class="p">;</span>
+
+<span class="bp">void</span> <span class="nx">LCSPrint</span><span class="p">(</span><span class="nx">const</span> <span class="kt">string</span><span class="o">&amp;</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">const</span> <span class="kt">string</span><span class="o">&amp;</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">int</span> <span class="p">(</span><span class="o">*</span><span class="nx">direction</span><span class="p">)</span><span class="err">[</span><span class="mi">100</span><span class="cp">]</span>, size_t row, size_t col) {
+    if (row <span class="err">&lt;</span>=0 || col <span class="err">&lt;</span>= 0)
+        return;
+    if (1 == direction<span class="cp">[</span><span class="nx">row</span><span class="cp">][</span><span class="nx">col</span><span class="cp">]</span>) {
+        LCSPrint(x, y, direction, row-1, col-1);
+        std::cout <span class="err">&lt;</span><span class="nt">&lt; x</span><span class="cp">[</span><span class="nx">row</span><span class="o">-</span><span class="mi">1</span><span class="cp">]</span><span class="err">;</span>
+    <span class="err">}</span> <span class="na">else</span> <span class="na">if</span> <span class="err">(</span><span class="na">2 =</span><span class="s">=</span> <span class="na">direction ...</span></pre></div>
+                <a class="readmore" href="/./算法/动态规划之最长公共子序列_不连续.html">read more</a>
+                                </div><!-- /.entry-content -->
+            </article></li>
+                            
+
+                 
+                        <li><article class="hentry">    
+                <header>
                     <h1><a href="/./C++学习笔记/C++异常.html" rel="bookmark"
                            title="Permalink to C++异常">C++异常</a></h1>
                 </header>
@@ -394,30 +431,6 @@ $1 当前行第一个字段  其他类似  </p>
 <p>tags: <a href="/tag/c.html">C++</a><a href="/tag/xue-xi-bi-ji.html">学习笔记</a></p>
 </footer><!-- /.post-info -->                
                 <a class="readmore" href="/./C++学习笔记/C++异常.html">read more</a>
-                                </div><!-- /.entry-content -->
-            </article></li>
-                            
-
-                 
-                        <li><article class="hentry">    
-                <header>
-                    <h1><a href="/./C++学习笔记/C++学习笔记二_类访问控制.html" rel="bookmark"
-                           title="Permalink to C++学习笔记二（类访问控制）">C++学习笔记二（类访问控制）</a></h1>
-                </header>
-                
-                <div class="entry-content">
-                <footer class="post-info">
-        <abbr class="published" title="2012-11-08T11:00:00">
-                Thu 08 November 2012
-        </abbr>
-
-                <address class="vcard author">
-                By <a class="url fn" href="/author/liuhatry.html">liuhatry</a>
-        </address>
-        <p>In <a href="/category/cxue-xi-bi-ji.html">C++学习笔记</a>. </p>
-<p>tags: <a href="/tag/c.html">C++</a><a href="/tag/xue-xi-bi-ji.html">学习笔记</a></p>
-</footer><!-- /.post-info -->                
-                <a class="readmore" href="/./C++学习笔记/C++学习笔记二_类访问控制.html">read more</a>
                                 </div><!-- /.entry-content -->
             </article></li>
                             </ol><!-- /#posts-list -->

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8">
+        <title>动态规划之最长公共子序列（不连续）</title>
+        <link rel="stylesheet" href="/theme/css/main.css">
+                
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">liuhatry's Blog </a></h1>
+                <nav><ul>
+                                                                                    <li ><a href="/category/cxue-xi-bi-ji.html">C++学习笔记</a></li>
+                                    <li ><a href="/category/cyu-yan-xue-xi-bi-ji.html">C语言学习笔记</a></li>
+                                    <li ><a href="/category/linux.html">Linux</a></li>
+                                    <li ><a href="/category/stl.html">STL</a></li>
+                                    <li ><a href="/category/shell.html">Shell</a></li>
+                                    <li class="active"><a href="/category/suan-fa.html">算法</a></li>
+                                                </ul></nav>
+        </header><!-- /#banner -->
+        <section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/./算法/动态规划之最长公共子序列_不连续.html" rel="bookmark"
+           title="Permalink to 动态规划之最长公共子序列（不连续）">动态规划之最长公共子序列（不连续）</a></h1>
+          </header>
+
+    <div class="entry-content">
+      <footer class="post-info">
+        <abbr class="published" title="2013-01-08T13:00:00">
+                Tue 08 January 2013
+        </abbr>
+
+                <address class="vcard author">
+                By <a class="url fn" href="/author/liuhatry.html">liuhatry</a>
+        </address>
+        <p>In <a href="/category/suan-fa.html">算法</a>. </p>
+<p>tags: <a href="/tag/suan-fa.html">算法</a></p>
+</footer><!-- /.post-info -->      <h2>动态规划之最长公共子序列（不连续）</h2>
+<div class="highlight"><pre><span class="vi">#include</span> <span class="o">&lt;</span><span class="nx">iostream</span><span class="o">&gt;</span>
+<span class="vi">#include</span> <span class="o">&lt;</span><span class="kt">string</span><span class="o">&gt;</span>
+
+<span class="nx">using</span> <span class="nx">std</span><span class="p">::</span><span class="nl">string</span><span class="p">;</span>
+
+<span class="bp">void</span> <span class="nx">LCSPrint</span><span class="p">(</span><span class="nx">const</span> <span class="kt">string</span><span class="o">&amp;</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">const</span> <span class="kt">string</span><span class="o">&amp;</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">int</span> <span class="p">(</span><span class="o">*</span><span class="nx">direction</span><span class="p">)</span><span class="err">[</span><span class="mi">100</span><span class="cp">]</span>, size_t row, size_t col) {
+    if (row <span class="err">&lt;</span>=0 || col <span class="err">&lt;</span>= 0)
+        return;
+    if (1 == direction<span class="cp">[</span><span class="nx">row</span><span class="cp">][</span><span class="nx">col</span><span class="cp">]</span>) {
+        LCSPrint(x, y, direction, row-1, col-1);
+        std::cout <span class="err">&lt;</span><span class="nt">&lt; x</span><span class="cp">[</span><span class="nx">row</span><span class="o">-</span><span class="mi">1</span><span class="cp">]</span><span class="err">;</span>
+    <span class="err">}</span> <span class="na">else</span> <span class="na">if</span> <span class="err">(</span><span class="na">2 =</span><span class="s">=</span> <span class="na">direction</span><span class="cp">[</span><span class="nx">row</span><span class="cp">][</span><span class="nx">col</span><span class="cp">]</span><span class="err">)</span> <span class="err">{</span>
+        <span class="na">LCSPrint</span><span class="err">(</span><span class="na">x</span><span class="err">,</span> <span class="na">y</span><span class="err">,</span> <span class="na">direction</span><span class="err">,</span> <span class="na">row</span><span class="err">,</span> <span class="na">col-1</span><span class="err">);</span>
+    <span class="err">}</span> <span class="na">else</span> <span class="na">if</span> <span class="err">(</span><span class="na">3 =</span><span class="s">=</span> <span class="na">direction</span><span class="cp">[</span><span class="nx">row</span><span class="cp">][</span><span class="nx">col</span><span class="cp">]</span><span class="err">)</span> <span class="err">{</span>
+        <span class="na">LCSPrint</span><span class="err">(</span><span class="na">x</span><span class="err">,</span> <span class="na">y</span><span class="err">,</span> <span class="na">direction</span><span class="err">,</span> <span class="na">row-1</span><span class="err">,</span> <span class="na">col</span><span class="err">);</span>
+    <span class="err">}</span>
+<span class="err">}</span>
+
+<span class="na">bool</span> <span class="na">LCS</span><span class="err">(</span><span class="na">const</span> <span class="na">string</span><span class="err">&amp;</span> <span class="na">x</span><span class="err">,</span> <span class="na">const</span> <span class="na">string</span><span class="err">&amp;</span> <span class="na">y</span><span class="err">)</span> <span class="err">{</span>
+    <span class="na">size_t</span> <span class="na">len_x =</span><span class="err"> </span><span class="s">x.length();</span>
+    <span class="na">size_t</span> <span class="na">len_y =</span><span class="err"> </span><span class="s">y.length();</span>
+    <span class="na">if</span> <span class="err">(</span><span class="na">0 =</span><span class="s">=</span> <span class="na">len_x</span> <span class="err">||</span> <span class="na">0 =</span><span class="s">=</span> <span class="na">len_y</span><span class="err">)</span> <span class="err">{</span>
+        <span class="na">return</span> <span class="na">false</span><span class="err">;</span>
+    <span class="err">}</span>
+
+    <span class="na">int</span> <span class="na">LCS_length</span><span class="cp">[</span><span class="mi">100</span><span class="cp">][</span><span class="mi">100</span><span class="cp">]</span><span class="err">;</span>
+    <span class="na">int</span> <span class="na">LCS_direction</span><span class="cp">[</span><span class="mi">100</span><span class="cp">][</span><span class="mi">100</span><span class="cp">]</span><span class="err">;</span>
+    <span class="na">for</span> <span class="err">(</span><span class="na">size_t</span> <span class="na">i =</span><span class="err"> </span><span class="s">0;</span> <span class="na">i</span> <span class="err">&lt;=</span> <span class="na">len_x</span><span class="err">;</span> <span class="na">i</span><span class="err">++)</span> <span class="err">{</span>
+        <span class="na">LCS_length</span><span class="cp">[</span><span class="nx">i</span><span class="cp">][</span><span class="mi">0</span><span class="cp">]</span><span class="na"> =</span><span class="err"> </span><span class="s">0;</span>
+    <span class="err">}</span>
+    <span class="na">for</span> <span class="err">(</span><span class="na">size_t</span> <span class="na">i =</span><span class="err"> </span><span class="s">0;</span> <span class="na">i</span> <span class="err">&lt;=</span> <span class="na">len_y</span><span class="err">;</span> <span class="na">i</span><span class="err">++)</span> <span class="err">{</span>
+        <span class="na">LCS_length</span><span class="cp">[</span><span class="mi">0</span><span class="cp">][</span><span class="nx">i</span><span class="cp">]</span><span class="na"> =</span><span class="err"> </span><span class="s">0;</span>
+    <span class="err">}</span>
+
+    <span class="na">for</span> <span class="err">(</span><span class="na">size_t</span> <span class="na">row =</span><span class="err"> </span><span class="s">1;</span> <span class="na">row</span> <span class="err">&lt;=</span> <span class="na">len_x</span><span class="err">;</span> <span class="na">row</span><span class="err">++)</span> <span class="err">{</span>
+        <span class="na">for</span> <span class="err">(</span><span class="na">size_t</span> <span class="na">col =</span><span class="err"> </span><span class="s">1;</span> <span class="na">col</span> <span class="err">&lt;=</span><span class="na">len_y</span><span class="err">;</span> <span class="na">col</span><span class="err">++)</span> <span class="err">{</span>
+            <span class="na">if</span> <span class="err">(</span><span class="na">x</span><span class="cp">[</span><span class="nx">row</span><span class="o">-</span><span class="mi">1</span><span class="cp">]</span><span class="na"> =</span><span class="s">=</span> <span class="na">y</span><span class="cp">[</span><span class="nx">col</span><span class="o">-</span><span class="mi">1</span><span class="cp">]</span><span class="err">)</span> <span class="err">{</span>
+                <span class="na">LCS_length</span><span class="cp">[</span><span class="nx">row</span><span class="cp">][</span><span class="nx">col</span><span class="cp">]</span><span class="na"> =</span><span class="err"> </span><span class="s">LCS_length</span><span class="cp">[</span><span class="nx">row</span><span class="o">-</span><span class="mi">1</span><span class="cp">][</span><span class="nx">col</span><span class="o">-</span><span class="mi">1</span><span class="cp">]</span> <span class="err">+</span> <span class="na">1</span><span class="err">;</span>
+                <span class="na">LCS_direction</span><span class="cp">[</span><span class="nx">row</span><span class="cp">][</span><span class="nx">col</span><span class="cp">]</span><span class="na"> =</span><span class="err"> </span><span class="s">1;</span>
+            <span class="err">}</span> <span class="na">else</span> <span class="na">if</span> <span class="err">(</span><span class="na">LCS_length</span><span class="cp">[</span><span class="nx">row</span><span class="cp">][</span><span class="nx">col</span><span class="o">-</span><span class="mi">1</span><span class="cp">]</span> <span class="nt">&gt;</span>= LCS_length<span class="cp">[</span><span class="nx">row</span><span class="o">-</span><span class="mi">1</span><span class="cp">][</span><span class="nx">col</span><span class="cp">]</span>) {
+                LCS_length<span class="cp">[</span><span class="nx">row</span><span class="cp">][</span><span class="nx">col</span><span class="cp">]</span> = LCS_length<span class="cp">[</span><span class="nx">row</span><span class="cp">][</span><span class="nx">col</span><span class="o">-</span><span class="mi">1</span><span class="cp">]</span>;
+                LCS_direction<span class="cp">[</span><span class="nx">row</span><span class="cp">][</span><span class="nx">col</span><span class="cp">]</span> = 2;
+            } else {
+                LCS_length<span class="cp">[</span><span class="nx">row</span><span class="cp">][</span><span class="nx">col</span><span class="cp">]</span> = LCS_length<span class="cp">[</span><span class="nx">row</span><span class="o">-</span><span class="mi">1</span><span class="cp">][</span><span class="nx">col</span><span class="cp">]</span>;
+                LCS_direction<span class="cp">[</span><span class="nx">row</span><span class="cp">][</span><span class="nx">col</span><span class="cp">]</span> = 3;
+            }
+        }
+    }
+    std::cout <span class="err">&lt;&lt;</span> &quot;The length of LCS:&quot; <span class="err">&lt;</span><span class="nt">&lt; std::endl</span><span class="err">;</span>
+    <span class="na">std::cout</span> <span class="err">&lt;&lt;</span> <span class="na">LCS_length</span><span class="cp">[</span><span class="nx">len_x</span><span class="cp">][</span><span class="nx">len_y</span><span class="cp">]</span> <span class="err">&lt;&lt;</span> <span class="na">std::endl</span><span class="err">;</span>
+    <span class="na">std::cout</span> <span class="err">&lt;&lt;</span> <span class="err">&quot;</span><span class="na">The</span> <span class="na">LCS:</span><span class="err">&quot;</span> <span class="err">&lt;&lt;</span> <span class="na">std::endl</span><span class="err">;</span>
+    <span class="na">LCSPrint</span><span class="err">(</span><span class="na">x</span><span class="err">,</span> <span class="na">y</span><span class="err">,</span> <span class="na">LCS_direction</span><span class="err">,</span> <span class="na">len_x</span><span class="err">,</span> <span class="na">len_y</span><span class="err">);</span>
+    <span class="na">std::cout</span> <span class="err">&lt;&lt;</span> <span class="na">std::endl</span><span class="err">;</span>
+    <span class="na">return</span> <span class="na">true</span><span class="err">;</span>
+<span class="err">}</span>
+
+<span class="na">int</span> <span class="na">main</span><span class="err">(</span><span class="na">int</span> <span class="na">argc</span><span class="err">,</span> <span class="na">char</span> <span class="err">*</span><span class="na">argv</span><span class="cp">[]</span><span class="err">){</span>
+    <span class="na">if</span> <span class="err">(</span><span class="na">3</span> <span class="err">!=</span> <span class="na">argc</span><span class="err">){</span>
+        <span class="na">std::cout</span> <span class="err">&lt;&lt;</span> <span class="err">&quot;</span><span class="na">Usage:</span> <span class="err">&quot;</span> <span class="err">&lt;&lt;</span> <span class="na">argv</span><span class="cp">[</span><span class="mi">0</span><span class="cp">]</span> <span class="err">&lt;&lt;</span> <span class="err">&quot;</span> <span class="na">str1</span> <span class="na">str2</span><span class="err">&quot;</span> <span class="err">&lt;&lt;</span> <span class="na">std::endl</span><span class="err">;</span>
+        <span class="na">return</span> <span class="na">-1</span><span class="err">;</span>
+    <span class="err">}</span>
+    <span class="na">string</span> <span class="na">x =</span><span class="err"> </span><span class="s">argv</span><span class="cp">[</span><span class="mi">1</span><span class="cp">]</span><span class="s">;</span>
+    <span class="na">string</span> <span class="na">y =</span><span class="err"> </span><span class="s">argv</span><span class="cp">[</span><span class="mi">2</span><span class="cp">]</span><span class="s">;</span>
+    <span class="na">LCS</span><span class="err">(</span><span class="na">x</span><span class="err">,</span><span class="na">y</span><span class="err">);</span>
+<span class="err">}</span>
+</pre></div>
+    </div><!-- /.entry-content -->
+    
+  </article>
+</section>
+        <section id="extras" class="body">
+                        <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                                                    <li><a href="https://launchpad.net/~liuhatry">Liuhatry's launchpad</a></li>
+                                                    <li><a href="http://blog.sina.com.cn/u/2466248683">Liuhatry's sina blog</a></li>
+                                                    <li><a href="http://weibo.com/u/2466248683#1343958047973">Liuhatry's weibo</a></li>
+                                                </ul>
+                </div><!-- /.blogroll -->
+                                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="/None" type="application/atom+xml" rel="alternate">atom feed</a></li>
+                            
+                                                    <li><a href="http://bbs.byr.cn/#!default">byr forum</a></li>
+                                                </ul>
+                </div><!-- /.social -->
+                </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>
