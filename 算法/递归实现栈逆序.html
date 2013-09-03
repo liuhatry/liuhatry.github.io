@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
         <meta charset="utf-8">
-        <title>liuhatry's Blog - 算法</title>
+        <title>递归实现栈逆序</title>
         <link rel="stylesheet" href="/theme/css/main.css">
                 
         <!--[if IE]>
@@ -19,16 +19,19 @@
                                     <li ><a href="/category/linux.html">Linux</a></li>
                                     <li ><a href="/category/stl.html">STL</a></li>
                                     <li ><a href="/category/shell.html">Shell</a></li>
-                                    <li ><a href="/category/suan-fa.html">算法</a></li>
+                                    <li class="active"><a href="/category/suan-fa.html">算法</a></li>
                                                 </ul></nav>
         </header><!-- /#banner -->
-                
-            
+        <section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/./算法/递归实现栈逆序.html" rel="bookmark"
+           title="Permalink to 递归实现栈逆序">递归实现栈逆序</a></h1>
+          </header>
 
-                            <aside id="featured" class="body">
-                <article>
-                    <h1 class="entry-title"><a href="/./算法/递归实现栈逆序.html">递归实现栈逆序</a></h1> 
-                    <footer class="post-info">
+    <div class="entry-content">
+      <footer class="post-info">
         <abbr class="published" title="2013-03-08T15:50:00">
                 Fri 08 March 2013
         </abbr>
@@ -38,7 +41,7 @@
         </address>
         <p>In <a href="/category/suan-fa.html">算法</a>. </p>
 <p>tags: <a href="/tag/suan-fa.html">算法</a></p>
-</footer><!-- /.post-info --><h2>递归实现栈逆序</h2>
+</footer><!-- /.post-info -->      <h2>递归实现栈逆序</h2>
 <div class="highlight"><pre><span class="vi">#include</span> <span class="o">&lt;</span><span class="nx">iostream</span><span class="o">&gt;</span>
 <span class="vi">#include</span> <span class="o">&lt;</span><span class="nx">deque</span><span class="o">&gt;</span>
 <span class="vi">#include</span> <span class="o">&lt;</span><span class="nb">stack</span><span class="o">&gt;</span>
@@ -83,60 +86,12 @@
   <span class="nx">ReverseStack</span><span class="p">(</span><span class="nb">stack</span><span class="p">);</span>
   <span class="nx">Print</span><span class="p">(</span><span class="nb">stack</span><span class="p">);</span>
 <span class="p">}</span>
-</pre></div>                </article>
-                            </aside><!-- /#featured -->
-                            <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
-                                                
-
-                 
-                        <li><article class="hentry">    
-                <header>
-                    <h1><a href="/./算法/动态规划之最长公共子序列_不连续.html" rel="bookmark"
-                           title="Permalink to 动态规划之最长公共子序列（不连续）">动态规划之最长公共子序列（不连续）</a></h1>
-                </header>
-                
-                <div class="entry-content">
-                <footer class="post-info">
-        <abbr class="published" title="2013-01-08T13:00:00">
-                Tue 08 January 2013
-        </abbr>
-
-                <address class="vcard author">
-                By <a class="url fn" href="/author/liuhatry.html">liuhatry</a>
-        </address>
-        <p>In <a href="/category/suan-fa.html">算法</a>. </p>
-<p>tags: <a href="/tag/suan-fa.html">算法</a></p>
-</footer><!-- /.post-info -->                <h2>动态规划之最长公共子序列（不连续）</h2>
-<div class="highlight"><pre><span class="vi">#include</span> <span class="o">&lt;</span><span class="nx">iostream</span><span class="o">&gt;</span>
-<span class="vi">#include</span> <span class="o">&lt;</span><span class="kt">string</span><span class="o">&gt;</span>
-
-<span class="nx">using</span> <span class="nx">std</span><span class="p">::</span><span class="nl">string</span><span class="p">;</span>
 </pre></div>
-
-
-<p>void LCSPrint(const string&amp; x,</p>
-<div class="highlight"><pre>              <span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">y</span><span class="p">,</span> 
-              <span class="kt">int</span> <span class="p">(</span><span class="o">*</span><span class="n">direction</span><span class="p">)[</span><span class="mi">100</span><span class="p">],</span> 
-              <span class="kt">size_t</span> <span class="n">row</span><span class="p">,</span> 
-              <span class="kt">size_t</span> <span class="n">col</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">row</span> <span class="o">&lt;=</span><span class="mi">0</span> <span class="o">||</span> <span class="n">col</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span>
-        <span class="k">return</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="mi">1</span> <span class="o">==</span> <span class="n">direction</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">])</span> <span class="p">{</span>
-        <span class="n">LCSPrint</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">direction</span><span class="p">,</span> <span class="n">row</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">col</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
-        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">x</span><span class="p">[</span><span class="n">row</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="k">if ...</span></pre></div>
-                <a class="readmore" href="/./算法/动态规划之最长公共子序列_不连续.html">read more</a>
-                                </div><!-- /.entry-content -->
-            </article></li>
-                            </ol><!-- /#posts-list -->
-                            <p class="paginator">
-        Page 1 / 1
-    </p>
-                        </section><!-- /#content -->
-                    <section id="extras" class="body">
+    </div><!-- /.entry-content -->
+    
+  </article>
+</section>
+        <section id="extras" class="body">
                         <div class="blogroll">
                         <h2>blogroll</h2>
                         <ul>

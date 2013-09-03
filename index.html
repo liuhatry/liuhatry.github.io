@@ -354,6 +354,50 @@ $1 当前行第一个字段  其他类似  </p>
                  
                         <li><article class="hentry">    
                 <header>
+                    <h1><a href="/./算法/递归实现栈逆序.html" rel="bookmark"
+                           title="Permalink to 递归实现栈逆序">递归实现栈逆序</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2013-03-08T15:50:00">
+                Fri 08 March 2013
+        </abbr>
+
+                <address class="vcard author">
+                By <a class="url fn" href="/author/liuhatry.html">liuhatry</a>
+        </address>
+        <p>In <a href="/category/suan-fa.html">算法</a>. </p>
+<p>tags: <a href="/tag/suan-fa.html">算法</a></p>
+</footer><!-- /.post-info -->                <h2>递归实现栈逆序</h2>
+<div class="highlight"><pre><span class="vi">#include</span> <span class="o">&lt;</span><span class="nx">iostream</span><span class="o">&gt;</span>
+<span class="vi">#include</span> <span class="o">&lt;</span><span class="nx">deque</span><span class="o">&gt;</span>
+<span class="vi">#include</span> <span class="o">&lt;</span><span class="nb">stack</span><span class="o">&gt;</span>
+
+<span class="nx">template</span><span class="o">&lt;</span><span class="nb">typename</span> <span class="nb">T</span><span class="o">&gt;</span>
+<span class="bp">void</span> <span class="nx">ReverseStack</span><span class="p">(</span><span class="nx">std</span><span class="p">::</span><span class="nl">stack</span><span class="o">&lt;</span><span class="nb">T</span><span class="o">&gt;&amp;</span> <span class="nb">stack</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">stack.empty</span><span class="p">())</span> <span class="p">{</span>
+    <span class="nb">T</span> <span class="n">top</span> <span class="o">=</span> <span class="nx">stack.top</span><span class="p">();</span>
+    <span class="nx">stack.pop</span><span class="p">();</span>
+    <span class="nx">ReverseStack</span><span class="p">(</span><span class="nb">stack</span><span class="p">);</span>
+    <span class="nx">AddToStackBottom</span><span class="p">(</span><span class="nb">stack</span><span class="p">,</span> <span class="nb">top</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">template</span><span class="o">&lt;</span><span class="nb">typename</span> <span class="nb">T</span><span class="o">&gt;</span>
+<span class="bp">void</span> <span class="nx">AddToStackBottom</span><span class="p">(</span><span class="nx">std</span><span class="p">::</span><span class="nl">stack</span><span class="o">&lt;</span><span class="nb">T</span><span class="o">&gt;&amp;</span> <span class="nb">stack</span><span class="p">,</span> <span class="nb">T</span> <span class="nb">value</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">stack.empty</span><span class="p">())</span> <span class="p">{</span>
+    <span class="nx">stack.push</span><span class="p">(</span><span class="nb">value</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nb">T</span> <span class="n">top ...</span></pre></div>
+                <a class="readmore" href="/./算法/递归实现栈逆序.html">read more</a>
+                                </div><!-- /.entry-content -->
+            </article></li>
+                            
+
+                 
+                        <li><article class="hentry">    
+                <header>
                     <h1><a href="/./C++学习笔记/C++学习笔记一_匿名命名空间.html" rel="bookmark"
                            title="Permalink to C++学习笔记一（匿名命名空间）">C++学习笔记一（匿名命名空间）</a></h1>
                 </header>
@@ -398,39 +442,21 @@ $1 当前行第一个字段  其他类似  </p>
 <span class="vi">#include</span> <span class="o">&lt;</span><span class="kt">string</span><span class="o">&gt;</span>
 
 <span class="nx">using</span> <span class="nx">std</span><span class="p">::</span><span class="nl">string</span><span class="p">;</span>
+</pre></div>
 
-<span class="bp">void</span> <span class="nx">LCSPrint</span><span class="p">(</span><span class="nx">const</span> <span class="kt">string</span><span class="o">&amp;</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">const</span> <span class="kt">string</span><span class="o">&amp;</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">int</span> <span class="p">(</span><span class="o">*</span><span class="nx">direction</span><span class="p">)</span><span class="err">[</span><span class="mi">100</span><span class="cp">]</span>, size_t row, size_t col) {
-    if (row <span class="err">&lt;</span>=0 || col <span class="err">&lt;</span>= 0)
-        return;
-    if (1 == direction<span class="cp">[</span><span class="nx">row</span><span class="cp">][</span><span class="nx">col</span><span class="cp">]</span>) {
-        LCSPrint(x, y, direction, row-1, col-1);
-        std::cout <span class="err">&lt;</span><span class="nt">&lt; x</span><span class="cp">[</span><span class="nx">row</span><span class="o">-</span><span class="mi">1</span><span class="cp">]</span><span class="err">;</span>
-    <span class="err">}</span> <span class="na">else</span> <span class="na">if</span> <span class="err">(</span><span class="na">2 =</span><span class="s">=</span> <span class="na">direction ...</span></pre></div>
+
+<p>void LCSPrint(const string&amp; x,</p>
+<div class="highlight"><pre>              <span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">y</span><span class="p">,</span> 
+              <span class="kt">int</span> <span class="p">(</span><span class="o">*</span><span class="n">direction</span><span class="p">)[</span><span class="mi">100</span><span class="p">],</span> 
+              <span class="kt">size_t</span> <span class="n">row</span><span class="p">,</span> 
+              <span class="kt">size_t</span> <span class="n">col</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">row</span> <span class="o">&lt;=</span><span class="mi">0</span> <span class="o">||</span> <span class="n">col</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="mi">1</span> <span class="o">==</span> <span class="n">direction</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">])</span> <span class="p">{</span>
+        <span class="n">LCSPrint</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">direction</span><span class="p">,</span> <span class="n">row</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">col</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">x</span><span class="p">[</span><span class="n">row</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if ...</span></pre></div>
                 <a class="readmore" href="/./算法/动态规划之最长公共子序列_不连续.html">read more</a>
-                                </div><!-- /.entry-content -->
-            </article></li>
-                            
-
-                 
-                        <li><article class="hentry">    
-                <header>
-                    <h1><a href="/./C++学习笔记/C++异常.html" rel="bookmark"
-                           title="Permalink to C++异常">C++异常</a></h1>
-                </header>
-                
-                <div class="entry-content">
-                <footer class="post-info">
-        <abbr class="published" title="2012-11-08T19:03:00">
-                Thu 08 November 2012
-        </abbr>
-
-                <address class="vcard author">
-                By <a class="url fn" href="/author/liuhatry.html">liuhatry</a>
-        </address>
-        <p>In <a href="/category/cxue-xi-bi-ji.html">C++学习笔记</a>. </p>
-<p>tags: <a href="/tag/c.html">C++</a><a href="/tag/xue-xi-bi-ji.html">学习笔记</a></p>
-</footer><!-- /.post-info -->                
-                <a class="readmore" href="/./C++学习笔记/C++异常.html">read more</a>
                                 </div><!-- /.entry-content -->
             </article></li>
                             </ol><!-- /#posts-list -->
